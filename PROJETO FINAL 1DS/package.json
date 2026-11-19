@@ -1,0 +1,16 @@
+{
+  "name": "loja-do-ze",
+  "version": "1.0.0",
+  "description": "Aplicação Node.js + PostgreSQL (Neon) para cadastrar, listar, editar e excluir categorias.",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node script_db_quantum.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

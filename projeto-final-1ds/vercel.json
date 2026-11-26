@@ -1,5 +1,5 @@
 {
   "framework": null,
-  "buildCommand": "mkdir -p public && cp index.html produtos.html app.js produtos.js style.css public/",
+  "buildCommand": "mkdir -p public && cp index.html clientes.html clientes.js produtos.html app.js produtos.js style.css public/",
   "outputDirectory": "public"
 }

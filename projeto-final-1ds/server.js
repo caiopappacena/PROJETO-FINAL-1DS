@@ -8,7 +8,10 @@ const PORTA = process.env.PORT || 3001
 
 const { atenderProdutos } = require('./produtos-api')
 
+const { cadastrarCliente } = require('./clientes-api')
 const arquivos = {
+    '/clientes.html': { arquivo: 'clientes.html', tipo: 'text/html; charset=utf-8' },
+    '/clientes.js': { arquivo: 'clientes.js', tipo: 'text/javascript; charset=utf-8' },
     '/produtos.html': { arquivo: 'produtos.html', tipo: 'text/html; charset=utf-8' },
     '/produtos.js': { arquivo: 'produtos.js', tipo: 'text/javascript; charset=utf-8' },
     '/': { arquivo: 'index.html', tipo: 'text/html; charset=utf-8' },
@@ -80,6 +83,7 @@ async function deletarCategoria(id) {
 async function atenderRequisicao(req, res) {
     const pathname = new URL(req.url, `http://localhost:${PORTA}`).pathname
 
+    if (pathname === '/api/clientes') return cadastrarCliente(req, res, lerCorpo, responderJSON)
     if (/^\/api\/produtos(?:\/|$)/.test(pathname)) {
         return atenderProdutos(req, res, pathname, lerCorpo, responderJSON)
     }

@@ -220,3 +220,14 @@ button:active {
         flex-basis: 100%;
     }
 }
+
+nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+nav a { color: #164eb0; padding: .3rem 0; }
+nav a[aria-current] { font-weight: 700; }
+#cliente, #cliente label, #produto, #produtos, #produto label { display: grid; gap: .65rem; }
+#cliente label, #produto label { font-size: .88rem; font-weight: 600; gap: .25rem; }
+#cliente input, #produto input, #produto select, #produto textarea { width: 100%; font: inherit; padding: .6rem; border: 1px solid #aab6c4; border-radius: .5rem; }
+#produtos { list-style: none; }
+#produtos li { display: grid; gap: .45rem; background: #f8fafc; border-radius: .7rem; padding: .8rem; overflow-wrap: anywhere; }
+#produtos small { color: #475569; }
+button:disabled { opacity: .6; cursor: wait; }

@@ -14,8 +14,8 @@ const arquivos = {
     '/clientes.js': { arquivo: 'clientes.js', tipo: 'text/javascript; charset=utf-8' },
     '/produtos.html': { arquivo: 'produtos.html', tipo: 'text/html; charset=utf-8' },
     '/produtos.js': { arquivo: 'produtos.js', tipo: 'text/javascript; charset=utf-8' },
-    '/': { arquivo: 'index.html', tipo: 'text/html; charset=utf-8' },
-    '/index.html': { arquivo: 'index.html', tipo: 'text/html; charset=utf-8' },
+    '/': { arquivo: 'clientes.html', tipo: 'text/html; charset=utf-8' },
+    '/index.html': { arquivo: 'clientes.html', tipo: 'text/html; charset=utf-8' },
     '/app.js': { arquivo: 'app.js', tipo: 'text/javascript; charset=utf-8' },
     '/style.css': { arquivo: 'style.css', tipo: 'text/css; charset=utf-8' }
 }

@@ -6,7 +6,11 @@ const { executarQueryNeon } = require('./script_db_quantum')
 
 const PORTA = process.env.PORT || 3001
 
+const { atenderProdutos } = require('./produtos-api')
+
 const arquivos = {
+    '/produtos.html': { arquivo: 'produtos.html', tipo: 'text/html; charset=utf-8' },
+    '/produtos.js': { arquivo: 'produtos.js', tipo: 'text/javascript; charset=utf-8' },
     '/': { arquivo: 'index.html', tipo: 'text/html; charset=utf-8' },
     '/index.html': { arquivo: 'index.html', tipo: 'text/html; charset=utf-8' },
     '/app.js': { arquivo: 'app.js', tipo: 'text/javascript; charset=utf-8' },
@@ -19,6 +23,7 @@ function responderJSON(res, status, dados) {
 }
 
 function lerCorpo(req) {
+    if (req.body !== undefined) return typeof req.body === 'string' ? JSON.parse(req.body) : req.body
     return new Promise((resolve, reject) => {
         let corpo = ''
         req.on('data', pedaco => corpo += pedaco)
@@ -72,8 +77,12 @@ async function deletarCategoria(id) {
     return linhas[0]
 }
 
-const servidor = http.createServer(async (req, res) => {
+async function atenderRequisicao(req, res) {
     const pathname = new URL(req.url, `http://localhost:${PORTA}`).pathname
+
+    if (/^\/api\/produtos(?:\/|$)/.test(pathname)) {
+        return atenderProdutos(req, res, pathname, lerCorpo, responderJSON)
+    }
 
     // Listar os itens da tabela categoria do DB via GET
     if (pathname === '/api/categorias' && req.method === 'GET') {
@@ -168,7 +177,9 @@ const servidor = http.createServer(async (req, res) => {
 
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' })
     res.end('Página não encontrada')
-})
+}
+
+const servidor = http.createServer(atenderRequisicao)
 
 if (require.main === module) {
     servidor.listen(PORTA, () => {
@@ -179,3 +190,5 @@ if (require.main === module) {
 }
 
 module.exports = servidor
+
+module.exports.atenderRequisicao = atenderRequisicao

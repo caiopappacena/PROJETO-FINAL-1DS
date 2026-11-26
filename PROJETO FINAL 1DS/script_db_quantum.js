@@ -3,11 +3,7 @@
 const path = require('path')
 
 // Carrega o .env da mesma pasta deste arquivo, não importa de onde o npm start rode
-const resultado = require('dotenv').config({ path: path.join(__dirname, '.env') })
-
-if (resultado.error) {
-    throw new Error(`Não encontrei o arquivo .env em: ${path.join(__dirname, '.env')}`)
-}
+if (!process.env.DATABASE_URL) require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 const DATABASE_URL = process.env.DATABASE_URL
 
